@@ -1,8 +1,22 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<div id="container" class="bg-red-700">
-	<h1 class="text-white">Hello World, im Juan Ocampo</h1>
+<div class="min-h-screen flex flex-col items-center justify-center p-6 bg-surface-base transition-colors duration-300">
+	<ThemeToggle />
+	
+	<div class="text-center space-y-4">
+		<h1 class="text-5xl font-bold bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+			Hello World, I'm Juan Ocampo
+		</h1>
+		<p class="text-xl text-text-muted max-w-md mx-auto">
+			Este portfolio está configurado con <span class="text-brand-accent font-semibold">Tailwind v4</span> y soporta <span class="text-brand-primary">Dark/Light mode</span> de forma nativa.
+		</p>
+		
+		<div class="flex gap-4 justify-center pt-6">
+			<div class="w-12 h-12 rounded-xl bg-brand-primary shadow-lg shadow-brand-primary/30"></div>
+			<div class="w-12 h-12 rounded-xl bg-brand-secondary shadow-lg shadow-brand-secondary/30"></div>
+			<div class="w-12 h-12 rounded-xl bg-brand-accent shadow-lg shadow-brand-accent/30"></div>
+		</div>
+	</div>
 </div>
