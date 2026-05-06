@@ -1,0 +1,47 @@
+---
+import Button from './shared/Button.astro';
+---
+<style>
+    .blink {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        margin-right: 8px;
+        vertical-align: middle;
+        animation: blink 1.4s steps(2) infinite;
+    }
+
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+</style>
+
+<section>
+    <div class="flex justify-between items-center px-6 py-2.5 font-mono text-sm">
+        <div class="flex items-center">
+            <span class="blink"></span>
+            Disponible para roles remotos.
+        </div>
+
+        <div>
+            Manizales, Colombia
+        </div>
+
+        <div>
+            {new Date().getFullYear()} — Portafolio n.º 1
+        </div>
+    </div>
+
+    <nav class="border-y-2 border-rule pl-6 flex justify-between items-center">
+	<span class="mono">JMO/</span>
+
+	<div class="flex">
+		<Button className="border-l-2" variant="link" text="Proyectos" href="#projects" />
+		<Button variant="link" text="Sobre mi" href="#about" />
+        <Button variant="link" text="Stack" href="#stack" />
+        <Button variant="link" text="Experiencia" href="#experience" />
+        <Button variant="link" text="Contacto" href="#contact" />
+	</div>
+</nav>
+</section>

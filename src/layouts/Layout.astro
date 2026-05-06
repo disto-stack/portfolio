@@ -1,14 +1,19 @@
 ---
-import "../styles/global.css";
+// Fonts
+import '@fontsource/anton';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
+
+import '../styles/global.css';
 
 interface Props {
 	title?: string;
 	description?: string;
 }
 
-const { 
-	title = "Juan Ocampo | Portfolio",
-	description = "Software Engineer & Creative Developer Portfolio"
+const {
+	title = 'Juan Ocampo | Portfolio',
+	description = 'Software Engineer & Creative Developer Portfolio',
 } = Astro.props;
 ---
 
@@ -22,15 +27,15 @@ const {
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		
-		<!-- Dark Mode Script -->
 		<script is:inline>
 			const getTheme = () => {
-				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-					return localStorage.getItem('theme');
-				}
-				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-					return 'dark';
-				}
+			
+				//if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+				//	return localStorage.getItem('theme');
+				//}
+				//if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				//	return 'dark';
+				//}
 				return 'light';
 			};
 

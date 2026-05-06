@@ -1,0 +1,39 @@
+---
+interface Props {
+	text: string;
+	href?: string;
+	type?: 'button' | 'submit' | 'reset';
+	className?: string;
+	target?: string;
+	variant?: 'link';
+}
+
+const {
+	text,
+	href,
+	type = 'button',
+	target,
+	variant = 'link',
+	className,
+} = Astro.props;
+
+const Element = href ? 'a' : 'button';
+
+const variantStyles = {
+	link: 'border-y-0 border-l-0 border-r-2 py-5 hover:bg-accent hover:text-inv',
+};
+---
+
+<Element
+	href={href}
+	type={href ? undefined : type}
+	target={target}
+	rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+	class:list={[
+		'mono border-rule border-2 transition-colors cursor-pointer inline-block text-center px-4 py-2',
+		variantStyles[variant],
+		className
+	]}
+>
+    {text}
+</Element>
