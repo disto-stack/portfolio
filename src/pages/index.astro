@@ -1,8 +1,10 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Navbar from '../components/Navbar.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<div class="min-h-screen flex flex-col bg-bg transition-colors duration-300">
+		<Navbar />
+	</div>
 </Layout>
