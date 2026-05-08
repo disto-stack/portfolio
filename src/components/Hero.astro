@@ -1,28 +1,36 @@
 ---
-
+import SectionHeader from './shared/SectionHeader.astro';
 ---
 
-<div class="flex flex-col justify-center p-6 border-b-2 border-rule">
-	<h1 class="flex flex-col">
-		<span class="text-ink">JUAN</span>
-		<span class="text-ink">MANUEL</span>
-		<span class="text-accent outline-text" style="-webkit-text-stroke: 2px var(--rule);">OCAMPO.</span>
-	</h1>
-</div>
+<section class="py-6">
+	<div class="px-6">
+		<SectionHeader title="Ingeniero de software" sectionNumber="1" />
 
-<div class="bg-accent p-4 overflow-hidden border-b-2 border-rule marquee-wrapper">
-	<div class="flex whitespace-nowrap gap-12 animate-marquee">
-		<span class="mono text-inv font-bold tracking-[3px]"
-			>AVAILABLE FOR SENIOR ROLES — 2026 — BASED IN LATAM —
-		</span>
-		<span class="mono text-inv font-bold tracking-[3px]"
-			>AVAILABLE FOR SENIOR ROLES — 2026 — BASED IN LATAM —
-		</span>
-		<span class="mono text-inv font-bold tracking-[3px]"
-			>AVAILABLE FOR SENIOR ROLES — 2026 — BASED IN LATAM —
-		</span>
+		<div class="flex justify-between py-6">
+			<h1 class="flex flex-col">
+				<span class="text-ink">JUAN</span>
+				<span class="text-ink">MANUEL</span>
+				<span class="text-accent outline-text" style="-webkit-text-stroke: 2px var(--rule);">OCAMPO.</span>
+			</h1>
+
+			<p class="border-l-2 border-rule pl-3 h-fit flex flex-col gap-1">
+				<span class="mono text-xs font-normal opacity-70">Sobre mí.</span>
+				Construyo cosas web que (casi siempre) no se rompen los lunes.
+			</p>
+		</div>
 	</div>
-</div>
+
+	<div class="bg-accent p-4 overflow-hidden border-b-2 border-rule marquee-wrapper">
+		<div class="flex whitespace-nowrap gap-10 animate-marquee">
+			<span class="mono text-inv font-bold text-base">NODE.JS ★ REACT ★ TYPESCRIPT ★ POSTGRES ★</span>
+			<span class="mono text-inv font-bold text-base">NODE.JS ★ REACT ★ TYPESCRIPT ★ POSTGRES ★</span>
+			<span class="mono text-inv font-bold text-base">NODE.JS ★ REACT ★ TYPESCRIPT ★ POSTGRES ★</span>
+			<span class="mono text-inv font-bold text-base">NODE.JS ★ REACT ★ TYPESCRIPT ★ POSTGRES ★</span>
+			<span class="mono text-inv font-bold text-base">NODE.JS ★ REACT ★ TYPESCRIPT ★ POSTGRES ★</span>
+			<span class="mono text-inv font-bold text-base">NODE.JS ★ REACT ★ TYPESCRIPT ★ POSTGRES ★</span>
+		</div>
+	</div>
+</section>
 
 <style>
 	.outline-text {
@@ -33,6 +41,7 @@
 		0% {
 			transform: translateX(0);
 		}
+
 		100% {
 			transform: translateX(-50%);
 		}
