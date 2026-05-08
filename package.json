@@ -10,9 +10,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"format": "biome format --write",
-		"check": "biome check --write",
-		"lint": "biome check --apply"
+		"format": "prettier --write ."
 	},
 	"dependencies": {
 		"@fontsource-variable/jetbrains-mono": "^5.2.8",
@@ -23,6 +21,8 @@
 		"tailwindcss": "^4.2.4"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.13"
+		"prettier": "^3.8.3",
+		"prettier-plugin-astro": "^0.14.1",
+		"typescript": "^6.0.3"
 	}
 }

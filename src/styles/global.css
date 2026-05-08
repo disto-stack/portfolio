@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
 	/* Colors - Mapping to your Brutalist Tokens */
@@ -10,9 +10,9 @@
 	--color-inv: var(--inv);
 
 	/* Typography */
-	--font-display: "Anton", sans-serif;
-	--font-sans: "Space Grotesk Variable", sans-serif;
-	--font-mono: "JetBrains Mono Variable", monospace;
+	--font-display: 'Anton', sans-serif;
+	--font-sans: 'Space Grotesk Variable', sans-serif;
+	--font-mono: 'JetBrains Mono Variable', monospace;
 
 	--radius: 0px;
 	--radius-sm: 0px;

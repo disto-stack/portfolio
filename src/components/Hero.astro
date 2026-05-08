@@ -1,0 +1,49 @@
+---
+
+---
+
+<div class="flex flex-col justify-center p-6 border-b-2 border-rule">
+	<h1 class="flex flex-col">
+		<span class="text-ink">JUAN</span>
+		<span class="text-ink">MANUEL</span>
+		<span class="text-accent outline-text" style="-webkit-text-stroke: 2px var(--rule);">OCAMPO.</span>
+	</h1>
+</div>
+
+<div class="bg-accent p-4 overflow-hidden border-b-2 border-rule marquee-wrapper">
+	<div class="flex whitespace-nowrap gap-12 animate-marquee">
+		<span class="mono text-inv font-bold tracking-[3px]"
+			>AVAILABLE FOR SENIOR ROLES — 2026 — BASED IN LATAM —
+		</span>
+		<span class="mono text-inv font-bold tracking-[3px]"
+			>AVAILABLE FOR SENIOR ROLES — 2026 — BASED IN LATAM —
+		</span>
+		<span class="mono text-inv font-bold tracking-[3px]"
+			>AVAILABLE FOR SENIOR ROLES — 2026 — BASED IN LATAM —
+		</span>
+	</div>
+</div>
+
+<style>
+	.outline-text {
+		color: var(--accent);
+	}
+
+	@keyframes marquee {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+
+	.animate-marquee {
+		display: inline-flex;
+		animation: marquee 20s linear infinite;
+	}
+
+	.animate-marquee:hover {
+		animation-play-state: paused;
+	}
+</style>

@@ -8,19 +8,12 @@ interface Props {
 	variant?: 'link';
 }
 
-const {
-	text,
-	href,
-	type = 'button',
-	target,
-	variant = 'link',
-	className,
-} = Astro.props;
+const { text, href, type = 'button', target, variant = 'link', className } = Astro.props;
 
 const Element = href ? 'a' : 'button';
 
 const variantStyles = {
-	link: 'border-y-0 border-l-0 border-r-2 py-5 hover:bg-accent hover:text-inv',
+	link: 'border-y-0 border-l-0 border-r-2 py-5 hover:bg-accent hover:text-inv'
 };
 ---
 
@@ -33,7 +26,6 @@ const variantStyles = {
 		'mono border-rule border-2 transition-colors cursor-pointer inline-block text-center px-4 py-2',
 		variantStyles[variant],
 		className
-	]}
->
-    {text}
+	]}>
+	{text}
 </Element>

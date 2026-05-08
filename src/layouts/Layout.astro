@@ -11,10 +11,8 @@ interface Props {
 	description?: string;
 }
 
-const {
-	title = 'Juan Ocampo | Portfolio',
-	description = 'Software Engineer & Creative Developer Portfolio',
-} = Astro.props;
+const { title = 'Juan Ocampo | Portfolio', description = 'Software Engineer & Creative Developer Portfolio' } =
+	Astro.props;
 ---
 
 <!doctype html>
@@ -26,10 +24,9 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		
+
 		<script is:inline>
 			const getTheme = () => {
-			
 				//if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
 				//	return localStorage.getItem('theme');
 				//}

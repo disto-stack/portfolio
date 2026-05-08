@@ -8,6 +8,6 @@ export default defineConfig({
 	site: 'https://juan-ocampo.me',
 	base: '/',
 	vite: {
-		plugins: [tailwindcss()],
-	},
+		plugins: [tailwindcss()]
+	}
 });
