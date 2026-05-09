@@ -1,5 +1,13 @@
 ---
 import Button from './shared/Button.astro';
+
+const links = [
+	{ num: '01', text: 'PROYECTOS', href: '#projects' },
+	{ num: '02', text: 'SOBRE MÍ', href: '#about' },
+	{ num: '03', text: 'STACK', href: '#stack' },
+	{ num: '04', text: 'EXPERIENCIA', href: '#experience' },
+	{ num: '05', text: 'CONTACTO', href: '#contact' }
+];
 ---
 
 <style>
@@ -21,28 +29,92 @@ import Button from './shared/Button.astro';
 </style>
 
 <header>
-	<div class="flex justify-between items-center px-6 py-2.5 font-mono text-sm">
+	<div
+		class="flex flex-col md:flex-row justify-between md:items-center px-6 py-2.5 font-mono text-[10px] md:text-sm uppercase md:normal-case gap-1 md:gap-0 text-ink">
 		<div class="flex items-center">
 			<span class="blink"></span>
-			Disponible para roles remotos.
+			Disponible para roles remoto
 		</div>
 
-		<div>Manizales, Colombia</div>
+		<div class="hidden md:block">Manizales, CO.</div>
 
-		<div>
-			{new Date().getFullYear()} — Portafolio n.º 1
-		</div>
+		<div>{`${new Date().getFullYear()}`} - Portafolio n.º 1</div>
 	</div>
 
-	<nav class="border-y-2 border-rule pl-6 flex justify-between items-center">
-		<span class="mono">JMO/</span>
+	<nav class="border-y-2 border-rule pl-6 flex justify-between items-stretch">
+		<span class="mono flex items-center">JMO/</span>
 
-		<div class="flex">
-			<Button className="border-l-2" variant="link" text="Proyectos" href="#projects" />
-			<Button variant="link" text="Sobre mi" href="#about" />
-			<Button variant="link" text="Stack" href="#stack" />
-			<Button variant="link" text="Experiencia" href="#experience" />
-			<Button variant="link" text="Contacto" href="#contact" />
+		<div class="hidden md:flex">
+			{
+				links.map((link, index) => (
+					<Button
+						className={index === 0 ? 'border-l-2' : index === links.length - 1 ? 'border-none' : ''}
+						variant="link"
+						text={link.text}
+						href={link.href}
+					/>
+				))
+			}
+		</div>
+
+		<div class="flex md:hidden border-l-2 border-rule">
+			<Button id="menu-open" variant="link" text="[Menu]" />
 		</div>
 	</nav>
+
+	<div
+		id="mobile-menu"
+		class="fixed inset-0 bg-bg z-50 flex flex-col overflow-y-auto transition-transform duration-300 ease-in-out -translate-y-full">
+		<div class="flex flex-col flex-1">
+			<div class="flex justify-between items-stretch bg-bg">
+				<span class="mono flex items-center pl-6">JMO/</span>
+				<Button id="menu-close" variant="link" text="[Close x]" className="border-l-2 border-rule" />
+			</div>
+
+			<nav class="flex flex-col flex-1 border-t-2 border-rule">
+				{
+					links.map(link => (
+						<a
+							href={link.href}
+							class="mobile-link group border-b-2 border-rule flex items-center px-6 py-6 hover:bg-accent hover:text-inv transition-colors">
+							<span class="mono text-dim group-hover:text-inv/70 mr-8 w-6">{link.num}</span>
+							<span class="font-display text-4xl sm:text-5xl uppercase tracking-tighter">
+								{link.text}
+							</span>
+						</a>
+					))
+				}
+			</nav>
+
+			<p class="mono text-xs text-dim text-center py-6">
+				Manizales, CO · {new Date().getFullYear()} — Portafolio n.º 1
+			</p>
+		</div>
+	</div>
 </header>
+
+<script>
+	const menuOpen = document.getElementById('menu-open');
+	const menuClose = document.getElementById('menu-close');
+	const mobileMenu = document.getElementById('mobile-menu');
+	const mobileLinks = document.querySelectorAll('.mobile-link');
+
+	if (menuOpen && menuClose && mobileMenu) {
+		menuOpen.addEventListener('click', () => {
+			mobileMenu.classList.remove('-translate-y-full');
+			document.body.style.overflow = 'hidden';
+		});
+
+		menuClose.addEventListener('click', () => {
+			mobileMenu.classList.add('-translate-y-full');
+			document.body.style.overflow = '';
+		});
+
+		mobileLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				mobileMenu.classList.add('-translate-y-full');
+				document.body.style.overflow = '';
+			});
+		});
+	}
+</script>
