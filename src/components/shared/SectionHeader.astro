@@ -1,14 +1,15 @@
 ---
 interface Props {
 	title: string;
-	sectionNumber: string;
+	sectionNumber?: string;
 }
 
 const { title, sectionNumber } = Astro.props;
 
-const formatSectionNumber = (sectionNumber: string): string => {
+const formatSectionNumber = (sectionNumber?: string): string => {
+	if (!sectionNumber) return '';
 	return sectionNumber.padStart(3, '0');
 };
 ---
 
-<h2 class="mono">{formatSectionNumber(sectionNumber)} — {title}</h2>
+<h3 class="mono text-xxs">{sectionNumber ? `${formatSectionNumber(sectionNumber)} / ` : ''} {title}</h3>

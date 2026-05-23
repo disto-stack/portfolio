@@ -1,0 +1,24 @@
+---
+interface Props {
+	text?: string;
+	variant?: 'solid' | 'outline';
+	className?: string;
+}
+
+const { text, variant = 'solid', className } = Astro.props;
+
+const variantStyles = {
+	solid: 'bg-inv text-ink tracking-widest',
+	outline: 'bg-transparent tracking-wider -ml-[2px] first:ml-0'
+};
+---
+
+<span
+	class:list={[
+		'mono border-2 border-current px-3 py-1 text-xs uppercase flex items-center justify-center',
+		variantStyles[variant],
+		className
+	]}>
+	{text}
+	<slot />
+</span>
