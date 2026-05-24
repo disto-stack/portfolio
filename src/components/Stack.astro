@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import SectionHeader from './shared/SectionHeader.astro';
+
+const stackItems: CollectionEntry<'stack'>[] = await getCollection('stack');
+stackItems.sort((a: CollectionEntry<'stack'>, b: CollectionEntry<'stack'>) => a.data.order - b.data.order);
+---
+
+<section id="stack" class="border-t-2 border-rule flex flex-col gap-5">
+	<div class="flex flex-col gap-3 px-3 py-5">
+		<SectionHeader title="STACK" sectionNumber="3" />
+		<h2>DE USO DIARIO</h2>
+	</div>
+
+	<div class="flex flex-col">
+		{
+			stackItems.map(item => (
+				<article class="group hover:bg-accent hover:text-bg px-3 py-5 md:py-8 first:border-t-2 border-b-2 border-rule flex items-center justify-between gap-4 last:border-b-0">
+					<h3 class="font-display text-3xl sm:text-4xl md:text-5xl uppercase leading-none shrink-0">
+						{item.data.category}
+					</h3>
+					<div class="grow border-b-3 border-rule opacity-30 self-center group-hover:border-bg" />
+					<span class="group-hover:text-inv mono text-xs sm:text-sm md:text-base shrink-0 text-ink/80">
+						{item.data.technologies.join(' · ')}
+					</span>
+				</article>
+			))
+		}
+	</div>
+</section>
