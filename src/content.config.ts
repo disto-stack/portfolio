@@ -17,6 +17,16 @@ const projectsCollection = defineCollection({
 	})
 });
 
+const stackCollection = defineCollection({
+	loader: glob({ pattern: '**/*.md', base: './src/content/stack' }),
+	schema: z.object({
+		order: z.number(),
+		category: z.string(),
+		technologies: z.array(z.string())
+	})
+});
+
 export const collections = {
-	projects: projectsCollection
+	projects: projectsCollection,
+	stack: stackCollection
 };
