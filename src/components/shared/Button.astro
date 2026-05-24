@@ -1,33 +1,33 @@
 ---
-interface Props {
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'button'>, Omit<HTMLAttributes<'a'>, 'type' | 'class'> {
 	text: string;
-	href?: string;
-	type?: 'button' | 'submit' | 'reset';
+	variant?: 'link' | 'primary';
 	className?: string;
-	target?: string;
-	variant?: 'link';
-	id?: HTMLButtonElement['id'];
 }
 
-const { text, href, type = 'button', target, variant = 'link', className, id } = Astro.props;
+const { text, href, variant = 'link', className, target, type, ...rest } = Astro.props;
 
 const Element = href ? 'a' : 'button';
+const buttonType = href ? undefined : type || 'button';
 
 const variantStyles = {
-	link: 'border-y-0 border-l-0 border-r-2 py-5 hover:bg-accent hover:text-inv'
+	link: 'border-y-0 border-l-0 border-r-2 py-5 hover:bg-accent hover:text-inv',
+	primary: 'hover:bg-accent hover:text-inv'
 };
 ---
 
 <Element
-	id={id}
 	href={href}
-	type={href ? undefined : type}
+	type={buttonType}
 	target={target}
 	rel={target === '_blank' ? 'noopener noreferrer' : undefined}
 	class:list={[
-		'mono border-rule border-2 transition-colors cursor-pointer inline-block text-center px-4 py-2',
+		'mono border-rule border-2 cursor-pointer inline-block text-center px-4 py-2',
 		variantStyles[variant],
 		className
-	]}>
+	]}
+	{...rest}>
 	{text}
 </Element>

@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Badge from './shared/Badge.astro';
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { data, id } = project;
+
+const modalId = `modal-${id}`;
+---
+
+<article
+	class="project-card group relative border-b-2 md:odd:border-r-2 border-rule p-6 flex flex-col gap-4 cursor-pointer hover:bg-accent hover:text-inv focus-within:bg-accent focus-within:text-inv"
+	data-modal-id={modalId}>
+	<div class="flex justify-between items-center w-full">
+		<div class="mono tracking-widest text-xs md:text-sm">
+			{data.id_number} - {data.year}
+		</div>
+		<Badge
+			className="group-hover:border-accent group-hover:text-accent group-focus-within:border-accent group-focus-within:text-accent"
+			variant="solid"
+			text={data.badge}
+		/>
+	</div>
+
+	<h3 class="mt-4 uppercase">
+		<button
+			type="button"
+			class="w-full text-left bg-transparent border-none p-0 focus:outline-none after:absolute after:inset-0 cursor-pointer"
+			aria-haspopup="dialog"
+			aria-controls={modalId}>
+			{data.title}
+		</button>
+	</h3>
+
+	<p>
+		{data.short_description}
+	</p>
+
+	<div class="flex mt-auto">
+		{data.stack.map((tech: string) => <Badge variant="outline" text={tech} className="py-1.5" />)}
+	</div>
+</article>

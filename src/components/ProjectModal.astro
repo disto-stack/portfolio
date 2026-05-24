@@ -1,0 +1,116 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Button from './shared/Button.astro';
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { data, id } = project;
+const modalId = `modal-${id}`;
+const { Content } = await render(project);
+
+const stackFormatted = data.stack.join(' · ');
+
+const specs = [
+	{ label: 'AÑO', value: data.year },
+	{ label: 'ROL', value: data.role },
+	{ label: 'TIPO', value: data.type },
+	{ label: 'STACK', value: stackFormatted }
+];
+---
+
+<dialog
+	id={modalId}
+	class="project-modal bg-bg text-ink border-3 border-rule w-[90%] max-w-3xl m-auto p-0 backdrop:bg-ink/80 backdrop:backdrop-blur-sm shadow-2xl focus:outline-none">
+	<article class="flex flex-col">
+		<header class="flex justify-between items-stretch border-b-2 border-rule py-3 px-2">
+			<div class="mono p-4 flex items-center text-xs md:text-sm tracking-widest uppercase">
+				{data.id_number}
+				{data.title} / {data.year} / {data.type}
+			</div>
+			<Button variant="primary" text="Cerrar · Esc" data-close-modal />
+		</header>
+
+		<main class="p-6 md:p-8 flex flex-col gap-8">
+			<header class="flex flex-col gap-1">
+				<h2 class="uppercase">{data.title}</h2>
+				<p class="mono text-dim tracking-widest mt-3 uppercase">DETALLES</p>
+			</header>
+
+			<p class="border-l-[5px] border-accent pl-5 py-1 leading-relaxed font-medium">
+				{data.short_description}
+			</p>
+
+			<section class="border-y-3 border-rule py-6" aria-label="Información del proyecto">
+				<dl class="grid grid-cols-1 gap-y-3 mono text-xs md:text-sm">
+					{
+						specs.map(spec => (
+							<div class="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] gap-4">
+								<dt class="text-dim">{spec.label}</dt>
+								<dd class="text-ink">{spec.value}</dd>
+							</div>
+						))
+					}
+				</dl>
+			</section>
+
+			<section class="flex flex-col gap-6">
+				<h3 class="mono font-bold text-ink tracking-widest text-xs leading-normal!">DETALLES</h3>
+				<div
+					class="project-content leading-relaxed
+					[&_ul]:flex [&_ul]:flex-col
+					[&_li]:relative [&_li]:pl-8 [&_li]:py-5 [&_li]:border-b [&_li]:border-dashed [&_li]:border-rule
+					[&_li:first-child]:pt-0
+					[&_li:last-child]:pb-0 [&_li:last-child]:border-none
+					[&_li::before]:content-['→'] [&_li::before]:text-accent [&_li::before]:absolute [&_li::before]:left-0 [&_li::before]:font-mono [&_li::before]:font-bold [&_li::before]:text-sm
+					[&_code]:bg-rule [&_code]:text-bg [&_code]:px-[0.3em] [&_code]:py-[0.1em] [&_code]:rounded-xs [&_code]:font-mono [&_code]:text-xs">
+					<Content />
+				</div>
+			</section>
+		</main>
+	</article>
+</dialog>
+
+<script>
+	interface SafeDialogElement extends HTMLElement {
+		close(): void;
+	}
+
+	const modals = document.querySelectorAll('.project-modal');
+	modals.forEach(modalElement => {
+		const modal = modalElement as SafeDialogElement;
+
+		modal.addEventListener('click', event => {
+			if (event.target === modal) {
+				modal.close();
+			}
+		});
+
+		const closeButtons = modalElement.querySelectorAll('[data-close-modal]');
+		closeButtons.forEach(btn => {
+			btn.addEventListener('click', () => {
+				modal.close();
+			});
+		});
+	});
+</script>
+
+<style>
+	dialog[open] {
+		animation: dialog-fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	}
+
+	@keyframes dialog-fade-in {
+		0% {
+			opacity: 0;
+			transform: translateY(20px) scale(0.98);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+</style>
