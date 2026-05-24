@@ -10,8 +10,8 @@ projects.sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =
 	a.data.id_number.localeCompare(b.data.id_number)
 );
 
-const minYear = Math.min(...projects.map((p: CollectionEntry<'projects'>) => p.data.year));
-const maxYear = Math.max(...projects.map((p: CollectionEntry<'projects'>) => p.data.year));
+const minYear = projects.length ? Math.min(...projects.map((p: CollectionEntry<'projects'>) => p.data.year)) : 2026;
+const maxYear = projects.length ? Math.max(...projects.map((p: CollectionEntry<'projects'>) => p.data.year)) : 2026;
 const yearRange = minYear === maxYear ? `${minYear}` : `${minYear} &rarr; ${maxYear}`;
 ---
 
@@ -21,7 +21,7 @@ const yearRange = minYear === maxYear ? `${minYear}` : `${minYear} &rarr; ${maxY
 			<SectionHeader title="PROYECTOS SELECCIONADOS." sectionNumber="1" />
 			<h2>OBRA.</h2>
 		</div>
-		<p class="flex flex-col gap-1 text-left md:text-right mono text-[13px] md:text-[14px]">
+		<p class="flex flex-col gap-1 text-left md:text-right mono text-xs md:text-sm">
 			<span class="text-ink text-xxs">{projects.length} proyecto{projects.length !== 1 ? 's' : ''}</span>
 			<span class="text-dim text-xxs" set:html={yearRange} />
 		</p>

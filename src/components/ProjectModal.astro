@@ -27,7 +27,7 @@ const specs = [
 	class="project-modal bg-bg text-ink border-3 border-rule w-[90%] max-w-3xl m-auto p-0 backdrop:bg-ink/80 backdrop:backdrop-blur-sm shadow-2xl focus:outline-none">
 	<article class="flex flex-col">
 		<header class="flex justify-between items-stretch border-b-2 border-rule py-3 px-2">
-			<div class="mono p-4 flex items-center text-[11px] md:text-[13px] tracking-widest uppercase">
+			<div class="mono p-4 flex items-center text-xs md:text-sm tracking-widest uppercase">
 				{data.id_number}
 				{data.title} / {data.year} / {data.type}
 			</div>
@@ -45,7 +45,7 @@ const specs = [
 			</p>
 
 			<section class="border-y-3 border-rule py-6" aria-label="Información del proyecto">
-				<dl class="grid grid-cols-1 gap-y-3 mono text-[13px] md:text-[14px]">
+				<dl class="grid grid-cols-1 gap-y-3 mono text-xs md:text-sm">
 					{
 						specs.map(spec => (
 							<div class="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] gap-4">
@@ -58,15 +58,15 @@ const specs = [
 			</section>
 
 			<section class="flex flex-col gap-6">
-				<h3 class="mono font-bold text-ink tracking-widest text-[11px]! leading-normal!">DETALLES</h3>
+				<h3 class="mono font-bold text-ink tracking-widest text-xs leading-normal!">DETALLES</h3>
 				<div
-					class="project-content text-[15px] leading-relaxed
+					class="project-content leading-relaxed
 					[&_ul]:flex [&_ul]:flex-col
 					[&_li]:relative [&_li]:pl-8 [&_li]:py-5 [&_li]:border-b [&_li]:border-dashed [&_li]:border-rule
 					[&_li:first-child]:pt-0
 					[&_li:last-child]:pb-0 [&_li:last-child]:border-none
-					[&_li::before]:content-['→'] [&_li::before]:text-accent [&_li::before]:absolute [&_li::before]:left-0 [&_li::before]:font-mono [&_li::before]:font-bold [&_li::before]:text-[1.1em]
-					[&_code]:bg-rule [&_code]:text-bg [&_code]:px-[0.3em] [&_code]:py-[0.1em] [&_code]:rounded-xs [&_code]:font-mono [&_code]:text-[0.85em]">
+					[&_li::before]:content-['→'] [&_li::before]:text-accent [&_li::before]:absolute [&_li::before]:left-0 [&_li::before]:font-mono [&_li::before]:font-bold [&_li::before]:text-sm
+					[&_code]:bg-rule [&_code]:text-bg [&_code]:px-[0.3em] [&_code]:py-[0.1em] [&_code]:rounded-xs [&_code]:font-mono [&_code]:text-xs">
 					<Content />
 				</div>
 			</section>
